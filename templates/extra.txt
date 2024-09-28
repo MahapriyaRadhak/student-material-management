@@ -1,0 +1,64 @@
+@app.route("/student_updateprofile",methods=['POST','GET'])
+def student_updateprofile():
+    if request.method == 'POST':
+        if request.form["submit"] == "Update":
+            a = request.form["uname"]
+            b = request.form["udept"]
+            c = request.form["uemail"]
+            d = request.form["uphone"]
+            file = request.files["file"]
+            if file and allowed_extensions(file.filename):
+                filename, file_extension = os.path.splitext(file.filename)
+                new_filename = secure_filename(str(random.randint(10000, 99999)) + file_extension)
+                file.save(os.path.join(UPLOAD_FOLDER, new_filename))
+                cur = mysql.connection.cursor()
+                cur.execute(
+                    "UPDATE tbl_student SET stname=%s, did=%s, stemail=%s, stphone=%s, stimage=%s WHERE stid=%s",
+                    (a, b, c, d, new_filename, session['stid']))
+                mysql.connection.commit()
+                cur.close()
+            return redirect(url_for('student_updateprofile'))
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM tbl_student WHERE stid=%s", (session['stid'],))
+    data = cur.fetchone()
+    cur.execute("SELECT dept FROM tbl_department WHERE did=%s", (data['did'],))
+    department = cur.fetchone()
+    cur.close()
+    return render_template("student_updateprofile.html", datas=data, department=department['dept'])
+
+{% extends 'student_layout.html' %}
+{% block body %}
+	<div class='col-md-6 mt-5'>
+			 <h2 class='text-center mt-4'style='color:#8338ff; text-decoration:underline;'>Update profile</h2>
+			<div class=' mt-5'>
+				<form class=' card mt-4 a3' style='padding:7%;margin-left:80px;background-color:#8338ff' method='POST' action='' enctype='multipart/form-data'>
+					<div class='form-group'>
+					<label style='color:white;'>Name</label>
+					<input type='text' name='uname' class='form-control' value={{datas.stname}}>
+					
+				</div>
+				<div class='form-group mt-2'>
+					<label style='color:white;'>Department</label>
+					<input type='text' name='udept' class='form-control'value={{department}}  >
+					
+				</div>
+				<div class='form-group mt-2'>
+					<label style='color:white;'>Email</label>
+					<input type='text' name='uemail' class='form-control'value={{datas.stemail}}>		
+				</div>
+				<div class='form-group mt-2'>
+					<label style='color:white;'>Phone</label>
+					<input type='text' name='uphone' class='form-control'value={{datas.stphone}} >
+				</div>
+				<div class='form-group mt-2'>
+						<label style='color:white;'>Upload Image</label>
+						<input type='file' name='file' class='form-control' value={{datas.stimage}}>
+				</div> 	
+				<div class='form-group mt-3' >
+					<input type='submit' name='submit' value='Update' class='btn btn-md' style='background:transparent; border-radius:10px; color:white; padding:8px; width:80px;border-color:white;box-shadow:2px 2px 10px 2px black;'>
+				</div>
+				
+				</form>
+		</div>
+	</div>
+{% endblock %}

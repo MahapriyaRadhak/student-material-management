@@ -1,0 +1,52 @@
+{% extends 'staff_layout.html' %}
+{% block body %}
+<div class='col-md-7 mt-5'>
+    <h2 class='mt-5' style='color:#8338ff;margin-left:390px;'>Upload Materials</h2>
+    <div class='mt-5'>
+        <form class='card mt-4 a4' style='padding:7%;margin-left:150px;' method='POST' action='' enctype='multipart/form-data'>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Department</label>
+                <select class='form-control mt-2' name='did'>
+                    <option>Select Department</option>
+                    {% for row in dept %}
+                        <option value='{{ row.did }}'>{{ row.dept }}-{{row.dyear}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class='form-group'>
+                <label style='color:#8338ff;'>Staff</label>
+                <select class='form-control mt-2' name='sid'>
+                    <option>Select Staff</option>
+                    {% for row in status %}
+                        <option value='{{ row.sid }}'>{{ row.sname}}</option>
+                    {% endfor %}
+                </select>
+            <div class='form-group'>
+                <label style='color:#8338ff;'>Semester</label>
+                <select name='dsem' class='form-control'>
+                    <option>Select semester</option>
+                    <option>I</option>
+                    <option>II</option>
+                    <option>III</option>
+                    <option>IV</option>
+                    <option>V</option>
+                    <option>VI</option>
+                </select>
+            </div>
+			<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Subject</label>
+						<input type='text' name='usub' class='form-control mt-2' placeholder='Enter the subject' >
+					</div>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Upload File</label>
+                <input type='file' name='file' class='form-control mt-2' required>
+            </div>
+            <div class='form-group mt-3'>
+                <input type='submit' name='submit' value='Upload' class='btn btn-md mt-3 b1'>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

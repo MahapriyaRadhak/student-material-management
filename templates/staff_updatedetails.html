@@ -1,0 +1,33 @@
+{% extends 'staff_layout.html' %}
+{% block body %}
+<div class='col-md-7 mt-5'>
+    <h2 class='text-center mt-5' style='color:#8338ff; margin-left:140px;'>Update Details</h2>
+    <div class='mt-5'>
+        <form class='card mt-4 a4' style='padding:7%; margin-left:180px;' method='POST' action='' enctype='multipart/form-data'>
+            <div class='form-group'>
+                <label style='color:#8338ff;'>Name</label>
+                <input type='text' name='uname' class='form-control mt-2' value="{{ datas.sname }}">
+            </div>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Department</label>
+                <select name='udept' class='form-control mt-2'>
+                    {% for dept in departments %}
+                        <option value="{{ dept.did }}" {% if dept.did == datas.did %}selected{% endif %}>{{ dept.dept }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Email</label>
+                <input type='text' name='uemail' class='form-control mt-2' value="{{ datas.semail }}">		
+            </div>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Phone</label>
+                <input type='text' name='uphone' class='form-control mt-2' value="{{ datas.sphone }}">
+            </div>
+            <div class='form-group mt-3'>
+                <input type='submit' name='submit' value='Update' class='btn btn-md b1 mt-2'>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

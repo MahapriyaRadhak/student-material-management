@@ -1,0 +1,18 @@
+{% extends 'student_layout.html' %}
+{% block body %}
+	<div class='col-md-6 mt-5'>
+			 <h2 class='text-center mt-5'style='color:#8338ff;'>Update profile</h2>
+			<div class=' mt-5'>
+				<form class=' card mt-4 a4' style='padding:7%;margin-left:100px;' method='POST' action='' enctype='multipart/form-data'>
+				<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Upload Image</label>
+						<input type='file' name='file' class='form-control mt-2'>
+				</div> 	
+				<div class='form-group mt-3' >
+					<input type='submit' name='submit' value='Update' class='btn btn-md b1 mt-2' >
+				</div>
+				
+				</form>
+		</div>
+	</div>
+{% endblock %}

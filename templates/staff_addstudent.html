@@ -1,0 +1,42 @@
+{% extends 'staff_layout.html' %}
+{% block body %}
+	<div class='col-md-7 mt-5'>
+			 <h2 class='mt-5'style='color:#8338ff; margin-left:390px;'>Add student</h2>
+			<div class=' mt-4'>
+				<form class=' card mt-5 a4' style='padding:7%;margin-left:150px; ' method='POST' action='' enctype='multipart/form-data'>
+					<div class='form-group'>
+						<label style='color:#8338ff;'>Roll No</label>
+						<input type='text' name='uroll' class='form-control mt-2' placeholder='Enter your roll number'>
+					</div>
+					<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Name</label>
+						<input type='text' name='uname' class='form-control mt-2' placeholder='Enter your name'>
+					</div>
+					<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Department</label>
+						<select class='form-control mt-2' name='did'>
+							<option>Select Department</option>
+							{% for row in dept %}
+								<option value='{{row.did}}'>{{row.dept}}-{{row.dyear}}-{{row.dsem}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Email</label>
+						<input type='text' name='uemail' placeholder='Enter your email ' class='form-control mt-2' >
+					</div>
+					<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Mobile</label>
+						<input type='text' name='uphone'placeholder='Enter your mobile number' class='form-control mt-2' >
+					</div>
+					<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Upload Photo</label>
+						<input type='file' name='file' class='form-control mt-2'>
+					</div>
+					<div class='form-group mt-3'>
+						<input type='submit' name='submit' value='ADD' class='btn btn-md mt-2 b1'>
+					</div>	
+			</form>
+		</div>
+	</div>	
+{% endblock %}

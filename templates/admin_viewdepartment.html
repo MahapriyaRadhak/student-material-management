@@ -1,0 +1,32 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+
+	<div class='col-md-6 mt-5'>
+		<h2 class='mt-3' style='color:#8338ff;margin-left:450px;'>Department details</h2>
+		<div>
+			<table class='table table-bordered mt-4 a3' style='margin-left:200px;'>
+				<thead>
+					<tr>
+						<th style='background-color:#8338ff; color:white;'>Sno</th>
+						<th style='background-color:#8338ff; color:white;'>Department</th>
+						<th style='background-color:#8338ff; color:white;'>Year</th>
+						<th style='background-color:#8338ff; color:white;'>Semester</th>
+						<th style='background-color:#8338ff; color:white;'>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in datas %}
+						<tr>
+							<td>{{loop.index}}</td>
+							<td>{{row.dept}}</td>
+							<td>{{row.dyear}}</td>
+							<td>{{row.dsem}}</td>
+							<td><a href='{{url_for("delete_department",did=row.did)}}' class='btn btn-md b1 mt-2'  onclick='return confirm("Are you sure")'>Delete</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
+	</div>
+	
+{% endblock %}

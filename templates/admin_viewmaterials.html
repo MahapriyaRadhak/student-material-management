@@ -1,0 +1,67 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+<div class='col-md-7 mt-5'>
+    <h2 class='mt-4' style='color:#8338ff; margin-left:390px;'>View Materials</h2>
+    <div class='mt-5'>
+        <form class='card mt-4 a4' style='padding:7%;margin-left:170px;' method='POST' action='' enctype='multipart/form-data'>
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Department</label>
+                <select class='form-control mt-2' name='did' required>
+                    <option value=''>Select Department</option>
+                    {% for row in depta %}
+                        <option value='{{ row.did }}'>{{ row.dept }}-{{row.dyear}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class='form-group mt-2'>
+                <label style='color:#8338ff;'>Semester</label>
+                <select name='usem' class='form-control mt-2' required>
+                    <option value=''>Select Semester</option>
+                    <option value='I'>I</option>
+                    <option value='II'>II</option>
+                    <option value='III'>III</option>
+                    <option value='IV'>IV</option>
+                    <option value='V'>V</option>
+                    <option value='VI'>VI</option>
+                </select>
+            </div>
+            <div class='form-group mt-3'>
+                <input type='submit' name='submit' value='Submit' class='btn btn-md mt-3 b1'>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if status %}
+<div class='col-md-9 mt-5' style='margin-left:250px;'>
+    <h2 class='mt-4' style='color:#8338ff; margin-left:410px;'>View Materials</h2>
+    <table class='table table-bordered ml-5 mt-5 a3'>
+        <thead>
+            <tr style='margin-left:220px;'>
+                <th style='background-color:#8338ff; color:white;'>Sno</th>
+				<th style='background-color:#8338ff; color:white;'>Staff Name</th>
+                <th style='background-color:#8338ff; color:white;'>Department</th>
+                <th style='background-color:#8338ff; color:white;'>Semester</th>
+				<th style='background-color:#8338ff; color:white;'>Year</th>
+                <th style='background-color:#8338ff; color:white;'>Subject</th>
+                <th style='background-color:#8338ff; color:white;'>Material</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in status %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+					<td>{{ row.sname }}</td>
+                    <td>{{ row.dept }}</td>
+					<td>{{ row.dsem }}</td>
+					<td>{{ row.dyear }}</td>
+                    <td>{{ row.subject }}</td>
+                    <td>{{ row.material }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

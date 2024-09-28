@@ -1,0 +1,38 @@
+{% extends 'admin_layout.html' %}
+{% block body %}
+		<div class='col-md-7' style='margin-left:40px;'>
+			<h2 class='mt-5' style='color:#8338ff;margin-left:370px;'>Staff Details</h2>
+			<form style='padding:7%; margin-left:150px;' method="POST" action="" enctype="multipart/form-data" class='card a4 mt-4'>
+				<div class='form-group'>
+					<label style='color:#8338ff;'>Name</label>
+					<input type='text' name='uname' class='form-control mt-2' placeholder='Enter your name'>
+					
+				</div>
+				<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Department</label>
+						<select class='form-control mt-2' name='did'>
+							<option>Select Department</option>
+							{% for row in dept %}
+								<option value='{{row.did}}'>{{row.dept}}</option>
+							{% endfor %}
+						</select>
+					</div>
+				<div class='form-group mt-2'>
+					<label style='color:#8338ff;'>Email</label>
+					<input type='text' name='uemail' class='form-control mt-2' placeholder='Enter your email'>		
+				</div>
+				<div class='form-group mt-2'>
+					<label style='color:#8338ff;'>Phone</label>
+					<input type='text' name='uphone' class='form-control mt-2' placeholder='Enter your phone number'>
+				</div>
+				<div class='form-group mt-2'>
+						<label style='color:#8338ff;'>Upload Image</label>
+						<input type='file' name='file' class='form-control mt-2'placeholder='Upload your image'>
+				</div> 	
+				<div class='form-group mt-3' >
+					<input type='submit' name='submit' value='ADD' class='btn btn-md b1 mt-2'>
+				</div>
+				
+			</form>
+		</div>
+{% endblock %}

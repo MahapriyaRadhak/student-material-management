@@ -1,0 +1,33 @@
+{% extends 'student_layout.html' %}
+{% block body %}
+<div class='col-md-7 mt-5' style='margin-left:50px;'>
+    <h2 class='mt-4' style='color:#8338ff; margin-left:250px;'>Materials Details</h2>
+    <table class='table table-bordered ml-5 mt-5 a3'>
+        <thead>
+            <tr style='margin-left:220px;'>
+                <th style='background-color:#8338ff; color:white;'>Sno</th>
+				<th style='background-color:#8338ff; color:white;'>Subject</th>
+                <th style='background-color:#8338ff; color:white;'>Department</th>
+                <th style='background-color:#8338ff; color:white;'>Semester</th>
+                <th style='background-color:#8338ff; color:white;'>Year</th>
+                <th style='background-color:#8338ff; color:white;'>Material</th>
+				<th style='background-color:#8338ff; color:white;'>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in datas %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.subject }}</td>
+                    <td>{{ row.dept }}</td>
+                    <td>{{ row.dsem }}</td>
+                    <td>{{ row.dyear }}</td> 
+                    <td>{{ row.material }}</td>
+					<td><a href="{{url_for( 'download',filename=row.material)}}" class='btn btn-md b1' style='width:90px;' >Download</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
